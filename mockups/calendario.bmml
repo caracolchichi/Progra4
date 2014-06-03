@@ -42,5 +42,10 @@
         <text>%3C-%20mas%20grande%20y%20que%20muestre%20los%20%0Aequipos%20que%20tendran%20partido%20ese%20dia</text>
       </controlProperties>
     </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Link" x="629" y="698" w="-1" h="-1" measuredW="258" measuredH="19" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Detalle%20de%20Partidos%20%28Tarjetas%2C%20puntaje%2C%20etc...%29</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
