@@ -1,0 +1,152 @@
+
+input[type=text], input[type=password]
+{
+	background-color: #FFFFFF;
+	color: #979797;
+	height: 28px;
+	padding-left: 10px;
+	width: 191px;
+	box-shadow: 2px 2px 0 #828181 inset;
+	border: 0;
+	border-radius: 5px;
+	font-family: Sansation,Arial;
+}
+input[type=button]
+{
+    background-color: #1E1E1E;
+    color: #979797;
+    height: 24px;
+    width: 103px;
+    color: #bbbbbb;
+    text-transform:uppercase;
+    box-shadow:-1px 2px #6E6B6A inset;
+	border: 0;
+    border-radius:5px;
+    font-family: Sansation,Arial;
+}
+
+
+
+
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	font-size:14px;
+	font-family: 'Arvo', serif;
+	background: #000000 url(images/siteBackground.jpg);
+	color:#CCCCCC;
+}
+a {
+	font-size: 14px;
+	color: #669966;
+	text-decoration: underline;
+}
+a:hover {
+	font-size: 14px;
+	color: #336633;
+	text-decoration: none;
+}
+h1, h2 {
+	padding: 0 15px;
+	color: #006633;
+}
+p {
+	padding:10px 15px 35px 15px;
+	line-height: 170%;
+}
+#container {
+	width: 90%;
+	position: absolute;
+	right: 10%;
+}
+#header {
+	padding: 0 10px 0 20px;
+}
+#header h1 {
+	margin: 0; 
+	padding: 10px 0;
+	float:left;
+}
+#header h1 a {
+	font-size:64px;
+	padding:0 15px;
+	text-decoration:none;
+}
+#mainContent {
+	padding: 0 20px;
+	background:none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+}
+#mainContent h1 {
+	padding-top:50px;
+}
+#mainContent ul {
+	padding:0 15px 40px 15px;
+}
+#mainContent ul a {
+	text-decoration:none;
+}
+#mainContent li {
+	padding:7px 0 7px 0;
+	border-bottom:1px solid rgba(0, 0, 0, 0.5);
+	list-style:none;
+}
+#mainContent ul a:hover {
+	color:#CCCCCC;
+}
+.picClear {
+	float:left;
+	padding:7px 25px 10px 0;
+}
+#footer {
+	padding: 0 10px;
+	background-color: #000;
+}
+#footer p {
+	font-size:14px;
+	margin: 0; 
+	padding: 30px 0;
+	text-align:center;
+}
+#footer p a {
+	font-size:14px;
+}
+.clearer {
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+/*Menu Principal (Arriba)*/
+ul#navlist {
+	font: bold 11px verdana, arial, sans-serif;
+	list-style-type: none;
+	padding-bottom: 62px;
+	margin: 0;
+	padding-top: 104px;
+	padding-left:15px;
+	padding-right:15px;
+}
+ul#navlist li {
+	float: left;
+	height: 62px;
+	background:none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+}
+#navlist #active a {
+	background: #006633;
+	color: #F5F5F5;
+}
+#navlist a {
+	float: left;
+	display: block;
+	color: #CCCCCC;
+	text-decoration: none;
+	padding:20px 20px;
+	text-transform:uppercase;
+	font-size:18px;
+}
+#navlist a:hover {
+	color: #F5F5F5;
+	background-color: #006633;
+}
