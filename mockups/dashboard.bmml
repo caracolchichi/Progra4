@@ -99,5 +99,10 @@
         <text>Info/notas</text>
       </controlProperties>
     </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::Tooltip" x="382" y="550" w="-1" h="-1" measuredW="155" measuredH="76" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>ID%20del%20torneo%20funcionando%20en%20el%20fondo</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
