@@ -19,7 +19,7 @@
    	  <h1>&nbsp;</h1>
     	<h1><a href="index.php">Torneos de Fútbol UNITEC</a></h1>
         <div id="navcontainer">
-           <ul id="navlist">
+            <ul id="navlist">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="torneos.php">Torneo</a></li>
                 <li><a href="calendario.php">Calendario</a></li>
@@ -51,45 +51,45 @@
     <!-- begin #mainContent -->
     <div id="mainContent">
     	<?php
+		if(!isset($_SESSION['username'])):
 		include "includes.php";
 		connectDB();
+		$UserUsuario = $_POST['username_r'];
+		$NombreUsuario = $_POST['name_r'];
+		$ApellidoUsuario = $_POST['apellido_r'];
+		$PasswordUsuario = $_POST['userpass_r'];
+		$CuentaUsuario = $_POST['cuenta_r'];
+		$CorreoUsuario = $_POST['email_r'];
+		$TelefonoUsuario = $_POST['telefono_r'];
+		$BirthDay = $_POST['birth_day'];
+		$BirthMonth = $_POST['birth_month'];
+		$BirthYear = $_POST['birth_year'];
+		
+		$register_query = 
+		"INSERT INTO usuarios (Usuario, NombreUsuario, ApellidoUsuario, Password, 
+		CuentaUsuario, CorreoUsuario, TelefonoUsuario, FechaNacimiento, EsAdmin) 
+		VALUES ('" .$UserUsuario . "', '" . $NombreUsuario . "', '" . $ApellidoUsuario . "', "
+		. "md5('" . $PasswordUsuario ."'), '" . $CuentaUsuario . "', '" 
+		. $CorreoUsuario . "', '" . $TelefonoUsuario . "', '" . $BirthYear . "-" . $BirthMonth . "-" . $BirthDay . "', 0);";
 		
 		
-		$username=$_POST['username_l'];
-		$password=$_POST['userpass_l'];
-
-		$clean_username = strip_tags(stripslashes($username));
-		$clean_password = strip_tags(stripslashes($password));
 		
-		$login_query = "SELECT * FROM usuarios WHERE Usuario='" . $clean_username . "' AND password=md5('" . $clean_password . "');";
-		
-		$query_res = $mysqli->query($login_query);
-		$row_cnt = $query_res->num_rows;
-		
-		
-		if($row_cnt==1){
+		if($mysqli->query($register_query)){
+			echo("<h1> Se ha creado el usuario " . $UserUsuario . "! </h1>");	
 			
-			$query_row = mysqli_fetch_assoc($query_res);
-			$_SESSION['username'] = $clean_username;
-			$_SESSION['loggedin'] = true; 
-			$_SESSION['isAdmin'] = $query_row['EsAdmin'];	
-			
-			echo("<h1>Logged in as " . $_SESSION['username'] . "!</h1> </br>");
-			if($_SESSION['isAdmin']==1){		
-				echo("Sesion iniciada como administrador. </br>");
-			}
-			sleep(5);
-			header("Refresh:0; url=index.php");
 		}else{
-			echo("<h1> No se ha podido ingresar. </h1>
-			<p>Favor revisar que su nombre de usuario y contrasena estan correctos</br>
-				y vuelva a intentarlo. </p> </br>");
+			echo("<h1> No se ha podido crear el usuario. </h1>
+			<p> Puede ser porque el nombre de usuario no esta disponible. </br>
+				Vuelva a intentarlo. </p> </br>");
 			
 		}
 		
-		
+		else: 
+		echo("<h1> La sesion ya ha sido iniciada. </h1>");
+		endif;
 		
 		?>
+        
         
         
         

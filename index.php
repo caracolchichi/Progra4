@@ -9,6 +9,10 @@
 
 </head>
 <body>
+<?php
+include 'includes.php';
+?>
+
 <!-- begin #container -->
 <div id="container">
     <p>
@@ -19,8 +23,8 @@
    	  <h1>&nbsp;</h1>
     	<h1><a href="index.php">Torneos de Fútbol UNITEC</a></h1>
         <div id="navcontainer">
-           <ul id="navlist">
-                <li><a href="index.php">Home</a></li>
+            <ul id="navlist">
+                <li  id="active"><a href="index.php">Home</a></li>
                 <li><a href="torneos.php">Torneo</a></li>
                 <li><a href="calendario.php">Calendario</a></li>
                 <?php
@@ -39,7 +43,7 @@
 				
 				if(!isset($_SESSION['username'])) :
 				?>
-                <li id="active"><a href="login.php">Iniciar SesiÓn </a></li>
+                <li><a href="login.php">Iniciar SesiÓn </a></li>
                 <?php
 				endif;
 				?>
@@ -50,46 +54,8 @@
     <!-- end #header -->
     <!-- begin #mainContent -->
     <div id="mainContent">
-    	<?php
-		include "includes.php";
-		connectDB();
-		
-		
-		$username=$_POST['username_l'];
-		$password=$_POST['userpass_l'];
-
-		$clean_username = strip_tags(stripslashes($username));
-		$clean_password = strip_tags(stripslashes($password));
-		
-		$login_query = "SELECT * FROM usuarios WHERE Usuario='" . $clean_username . "' AND password=md5('" . $clean_password . "');";
-		
-		$query_res = $mysqli->query($login_query);
-		$row_cnt = $query_res->num_rows;
-		
-		
-		if($row_cnt==1){
-			
-			$query_row = mysqli_fetch_assoc($query_res);
-			$_SESSION['username'] = $clean_username;
-			$_SESSION['loggedin'] = true; 
-			$_SESSION['isAdmin'] = $query_row['EsAdmin'];	
-			
-			echo("<h1>Logged in as " . $_SESSION['username'] . "!</h1> </br>");
-			if($_SESSION['isAdmin']==1){		
-				echo("Sesion iniciada como administrador. </br>");
-			}
-			sleep(5);
-			header("Refresh:0; url=index.php");
-		}else{
-			echo("<h1> No se ha podido ingresar. </h1>
-			<p>Favor revisar que su nombre de usuario y contrasena estan correctos</br>
-				y vuelva a intentarlo. </p> </br>");
-			
-		}
-		
-		
-		
-		?>
+    	<!-- Main Content aqui -->
+        
         
         
         
