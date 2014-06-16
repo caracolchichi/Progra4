@@ -11,6 +11,9 @@
 			$_SESSION['isAdmin'] = false;
 		session_destroy();
 		}
+		header('cache-control: no-cache,no-store,must-revalidate'); 
+		header('pragma: no-cache'); 
+		header('expires: 0');
 		header("Refresh:0; url=index.php");
 	}else{
 		

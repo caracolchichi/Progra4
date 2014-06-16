@@ -29,7 +29,7 @@
                 <li><a href="calendario.php">Calendario</a></li>
                 <?php
 				
-				  if(isset($_SESSION['isAdmin'])) :
+				  if(@$_SESSION['isAdmin']==1) :
 				?>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <?php
