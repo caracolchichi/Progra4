@@ -55,7 +55,35 @@ include 'includes.php';
     <!-- begin #mainContent -->
     <div id="mainContent">
     	<!-- Main Content aqui -->
+        <?php
+		if(isset($_SESSION['username']) && @$_POST['save_equipo']):
+		$select_torneo = "SELECT * FROM torneo WHERE IdTorneo=" . $_POST['id_torneo'] .";";
+			$IdTorneo = $_POST['id_torneo'];
+		
+			$result = $mysqli->query($select_torneo);
+			$row_torneo = $result->fetch_assoc();
+			
+			for ($entry_counter=1; $entry_counter<$row_torneo['NumeroJugadores']; $entry_counter++) :
+			
+				if(isset($_POST['is_registered' . $entry_counter])){
+					
+					
+					
+				$select_player = "SELECT * FROM jugadores WHERE Cuenta='" . $_POST['cuenta_jugador'. $entry_counter] . "' and IdTorneo=" . $_POST['id_torneo'] .";";
+					$result_player = $mysqli->query($select_player);
+					if($result_player->num_rows < 1){
+						
+					}
+				}
+		?>
         
+        <?php
+			endfor;
+		else:
+		echo("<h1>Se ha producido un error en la creacion del torneo. Vuelva a la pagina anterior e intente de nuevo.</h1>");
+		
+		endif;
+		?>
         
         
         

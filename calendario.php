@@ -34,7 +34,7 @@ include 'includes.php';
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <?php
 				  endif;
-				  if(isset($_SESSION['usuario']) || isset($_SESSION['isAdmin'])) :
+				  if(isset($_SESSION['username']) || isset($_SESSION['isAdmin'])) :
 				?>
                 <li><a href="cp.php">Control Panel </a></li>
                 <li><a href="?logout=1">Cerrar SesiÓn </a></li>
