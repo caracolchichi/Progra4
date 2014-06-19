@@ -278,48 +278,7 @@ class Calendar extends Event_Subject {
 				$this->attach($this->event()->condition('current', FALSE)->add_class('prev-next'));
 			break;
 			case 'holidays':
-				// Base event
-				$event = $this->event()->condition('current', TRUE)->add_class('holiday');
-
-				// Attach New Years
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 1)->condition('day', 1)->title('New Years')->output('New Years'));
-
-				// Attach Valentine's Day
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 2)->condition('day', 14)->title('Valentine\'s Day')->output('Valentine\'s Day'));
-
-				// Attach St. Patrick's Day
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 3)->condition('day', 17)->title('St. Patrick\'s Day')->output('St. Patrick\'s Day'));
-
-				// Attach Easter
-				$holiday = clone $event;
-				$this->attach($holiday->condition('easter', TRUE)->title('Easter')->output('Easter'));
-
-				// Attach Memorial Day
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 5)->condition('day_of_week', 1)->condition('last_occurrence', TRUE)->title('Memorial Day')->output('Memorial Day'));
-
-				// Attach Independance Day
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 7)->condition('day', 4)->title('Independence Day')->output('Independence Day'));
-
-				// Attach Labor Day
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 9)->condition('day_of_week', 1)->condition('occurrence', 1)->title('Labor Day')->output('Labor Day'));
-
-				// Attach Halloween
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 10)->condition('day', 31)->title('Halloween')->output('Halloween'));
-
-				// Attach Thanksgiving
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 11)->condition('day_of_week', 4)->condition('occurrence', 4)->title('Thanksgiving')->output('Thanksgiving'));
-
-				// Attach Christmas
-				$holiday = clone $event;
-				$this->attach($holiday->condition('month', 12)->condition('day', 25)->title('Christmas')->output('Christmas'));
+				
 			break;
 			case 'weekends':
 				// Weekend events
