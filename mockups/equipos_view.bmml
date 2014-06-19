@@ -1,0 +1,74 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1138" measuredH="530" mockupW="902" mockupH="486">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="236" y="44" w="902" h="486" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Listado%20de%20Equipos%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="501" y="140" w="-1" h="-1" measuredW="373" measuredH="43" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Equipos%20Registrados</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Accordion" x="280" y="210" w="203" h="89" measuredW="203" measuredH="159" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Los%20Super%20Perdedores%20Extremos%0A-%20algo%20feo%2C%201000001%2C%20%2095%20a%F1os%0A-%20asaber%20%2C%201000002%2C%20201%20a%F1os</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Tooltip" x="864" y="314" w="192" h="76" measuredW="199" measuredH="0" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>acordiones%20que%20desplegan%0Alos%20integrantes%20del%20equipo%20%0Aal%20dar%20click%20sobre%20ellos</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Accordion" x="280" y="308" w="203" h="89" measuredW="202" measuredH="159" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>FC%20Real%20Barcelona%20Munich%0A-%20Confusio%2C%201000007%2C%20%20109%20a%F1os%0A-%20Tibu%20reyes%20%2C%201000008%2C%2020%20a%F1os</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Accordion" x="819" y="210" w="203" h="89" measuredW="203" measuredH="159" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Los%20UNITECOS%0A-%20unitequito%2C%201000005%2C%20%2025%20a%F1os%0A-%20ceutequito%20%2C%201000006%2C%2025%20a%F1os</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Accordion" x="548" y="210" w="203" h="89" measuredW="190" measuredH="159" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Los%20Super%20Campeones%0A-%20rudolf%2C%201000003%2C%20%2015%20a%F1os%0A-%20santa%20%2C%201000004%2C%205000%20a%F1os</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Accordion" x="548" y="308" w="203" h="139" measuredW="203" measuredH="213" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Los%204%20Fantasticos%0A-%20antorcha%20%2C%201000009%2C%20%2025%20a%F1os%0A-%20mr%20elastico%20%2C%201000010%2C%2030%20a%F1os%0A-%20la%20mole%20%2C%201000011%2C%2050%20a%F1os%0A-%20mrs%20invisible%2C%201000012%2C%2021%20a%F1os</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="746" y="210" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>UpdateIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Button" x="1016" y="210" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>UpdateIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="477" y="210" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>UpdateIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="477" y="308" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>UpdateIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="746" y="308" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>UpdateIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

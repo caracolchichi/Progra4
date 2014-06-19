@@ -11,6 +11,7 @@
 <body>
 <?php
 include 'includes.php';
+connectDB();
 ?>
 
 <!-- begin #container -->
@@ -55,8 +56,89 @@ include 'includes.php';
     <!-- begin #mainContent -->
     <div id="mainContent">
     	<!-- Main Content aqui -->
-        
-        
+
+		<!-- Creacion del Calendario -->
+		<?php
+					include 'classes/calendar.php';
+					 
+					$month = isset($_GET['m']) ? $_GET['m'] : NULL;
+					$year  = isset($_GET['y']) ? $_GET['y'] : NULL;
+					 
+					$calendar = Calendar::factory($month, $year);
+					 
+					 //utilizar estos eventos como referencia para los nuestros
+					 
+					 $partidos_query = "SELECT p.IdPartido, 
+       					e.NombreEquipo AS EquipoA,
+       					e2.NombreEquipo AS EquipoB, 
+						p.FechaPartido
+  						FROM partidos p INNER JOIN equipo e
+    					ON p.IdEquipoA = e.IdEquipo INNER JOIN equipo e2 
+    					ON p.IdEquipoB = e2.IdEquipo;";	
+					$res =  $mysqli->query($partidos_query);
+					
+					while($row = $res->fetch_assoc()){
+							$IdPartido = $row['IdPartido'];
+							$event = $calendar->event()
+											->condition('timestamp', strtotime($row['FechaPartido']))
+											->title('Partido')
+											->output("<a href='detalles.php?idpartido=" . $IdPartido . "'> " . $row['EquipoA'] . " vs. " . $row['EquipoB'] . "</a> </br>");
+							$calendar->attach($event);
+						
+					}
+					
+					 		 
+					 
+					 
+					
+					 
+					$calendar->standard('today')
+						->standard('prev-next');
+						
+				?>
+		
+        <table class="calendar">
+			<thead>
+				<tr class="navigation">
+					<th class="prev-month"><a href="<?php echo htmlspecialchars($calendar->prev_month_url()) ?>"><?php echo $calendar->prev_month() ?></a></th>
+					<th colspan="5" class="current-month"><?php echo $calendar->month() ?> <?php echo $calendar->year ?></th>
+					<th class="next-month"><a href="<?php echo htmlspecialchars($calendar->next_month_url()) ?>"><?php echo $calendar->next_month() ?></a></th>
+				</tr>
+				<tr class="weekdays">
+					<?php foreach ($calendar->days() as $day): ?>
+						<th><?php echo $day ?></th>
+					<?php endforeach ?>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($calendar->weeks() as $week): ?>
+					<tr>
+						<?php foreach ($week as $day): ?>
+							<?php
+							list($number, $current, $data) = $day;
+							 
+							$classes = array();
+							$output  = '';
+							 
+							if (is_array($data))
+							{
+								$classes = $data['classes'];
+								$title   = $data['title'];
+								$output  = empty($data['output']) ? '' : '<ul class="output"><li>'.implode('</li><li>', $data['output']).'</li></ul>';
+							}
+							?>
+							<td class="day <?php echo implode(' ', $classes) ?>">
+								<span class="date" title="<?php echo implode(' / ', $title) ?>"><?php echo $number ?></span>
+								<div class="day-content">
+									<?php echo $output ?>
+								</div>
+							</td>
+						<?php endforeach ?>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+        <!-- end creacion del calendario -->
         
         
     </div>

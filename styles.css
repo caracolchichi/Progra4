@@ -56,7 +56,7 @@ a:hover {
 	color: #336633;
 	text-decoration: none;
 }
-h1, h2 {
+h1, h2, h3 {
 	padding: 0 15px;
 	color: #006633;
 }
@@ -218,12 +218,27 @@ input[type=submit]:active {
 .calendar th.current-month {text-align:center; font-size:1.5em;}
 .calendar th.next-month {text-align:right;}
 .calendar tr.weekdays th {text-align:left;}
-.calendar td {width:14%; height:100px; vertical-align:top; border:1px solid #CCC;}
-.calendar td.today {background:#D2B48C;}
-.calendar td.prev-next {background:#C0C0C0;}
+.calendar td {
+	width: 14%;
+	height: 100px;
+	vertical-align: top;
+	border: 1px solid #CCC;
+	background-color: #020202;
+}
+.calendar td.today {
+	background-color: #051A02;
+}
+.calendar td.prev-next {
+	background-color: #1E1E1E;
+}
 .calendar td.prev-next span.date {color:#9C9C9C;}
 .calendar td.holiday {background:#DDFFDE;}
-.calendar span.date {display:block; padding:4px; line-height:12px; background:#006400;}
+.calendar span.date {
+	display: block;
+	padding: 4px;
+	line-height: 12px;
+	background-color: #336633;
+}
 .calendar div.day-content {}
 .calendar ul.output {margin:0; padding:0 4px; list-style:none;}
 .calendar ul.output li {margin:0; padding:5px 0; line-height:1em; border-bottom:1px solid #CCC;}

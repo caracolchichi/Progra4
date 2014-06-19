@@ -65,6 +65,7 @@ connectDB();
 		<form action="torneos_register_save.php" method="post">	
         <input type="hidden" name="id_torneo" value='<?php echo($IdTorneo); ?>' />
             <input type="hidden" name="id_usuario" value='<?php echo($IdUsuario); ?>' />
+         <input type="text" placeholder="Nombre del equipo" required="required" pattern="[a-zA-Z 0-9-_]{1,30}" name="nombre_equipo" />    
 			<table border="1" 
 		<tr>
 			<th rowspan="2" style="width:6%">Puesto</th>
@@ -93,9 +94,9 @@ connectDB();
 				<td><?php echo createDays('day_capitan', 1); ?></td> 
                 
                 
-				<td><input name="cuenta_capitan" pattern="[1-9]{8}" type="text" size=10 required="required"></td>
+				<td><input name="cuenta_capitan" pattern="[0-9]{8}" type="text" size=10 required="required"></td>
 				<td><input name="carrera_capitan" pattern="[a-zA-Z ]{1,30}" type="text" size=10 required="required"></td>
-				<td><input name="celular_capitan" pattern="[1-9]{8,12}" type="text" size=10 required="required"></td>
+				<td><input name="celular_capitan" pattern="[0-9]{8,12}" type="text" size=10 required="required"></td>
 				<td><input name="mail_capitan" type="email" size=15 required="required"></td>
 				</tr>
 			
@@ -109,16 +110,16 @@ connectDB();
 			?>
 				<tr>
 				<td>Jugador #<?php echo($entry_counter) ?></td>
-				<td><input pattern="[a-zA-Z ]{1,30}" name="nombre_jugador<?php echo($entry_counter) ?>" type="text" SIZE=28></td>
+				<td><input pattern="[a-zA-Z ]{1,30}" name="nombre_jugador<?php echo($entry_counter) ?>" type="text" pattern="[a-zA-Z ]{1,30}" SIZE=28></td>
 				
                 <td><?php echo createYears(1900, 2014, 'year_jugador' . $entry_counter, 1995); ?></td>
 
 				<td><?php echo createMonths('month_jugador' . $entry_counter, 1); ?></td>
 
 				<td><?php echo createDays('day_jugador' . $entry_counter, 1); ?></td> 
-				<td><input name="cuenta_jugador<?php echo($entry_counter) ?>" type="text" SIZE=10></td>
-				<td><input name="carrera_jugador<?php echo($entry_counter) ?>" type="text" SIZE=10></td>
-				<td><input name="celular_jugador<?php echo($entry_counter) ?>" type="text" SIZE=10></td>
+				<td><input name="cuenta_jugador<?php echo($entry_counter) ?>" type="text" pattern="[0-9]{8}" SIZE=10></td>
+				<td><input name="carrera_jugador<?php echo($entry_counter) ?>" type="text" pattern="[a-zA-Z ]{1,30}" SIZE=10></td>
+				<td><input name="celular_jugador<?php echo($entry_counter) ?>" type="text" pattern="[0-9]{8,12}" SIZE=10></td>
 				<td><input name="mail_jugador<?php echo($entry_counter) ?>" type="email" SIZE=15></td>
 				</tr>
 			<?php
