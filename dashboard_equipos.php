@@ -32,12 +32,12 @@ connectDB();
 				
 				  if(@$_SESSION['isAdmin']==1) :
 				?>
-                <li><a href="dashboard.php">Dashboard</a></li>
+                <li id="active"><a href="dashboard.php">Dashboard</a></li>
                 <?php
 				  endif;
 				  if(isset($_SESSION['username']) || isset($_SESSION['isAdmin'])) :
 				?>
-                <li id="active"><a href="cp.php">Control Panel </a></li>
+                <li><a href="cp.php">Control Panel </a></li>
                 <li><a href="?logout=1">Cerrar SesiÓn </a></li>
                 <?php
 				endif;
@@ -56,21 +56,18 @@ connectDB();
     <!-- begin #mainContent -->
     <div id="mainContent">
     	<!-- Main Content aqui -->
+        <h2><a href="dashboard.php"> Torneos </a>    -    <a href="dashboard_equipos.php"> Equipos </a>
         <?php
-		if(isset($_SESSION['username'])):
-			$userid_query = "SELECT * FROM usuarios WHERE Usuario='" . $_SESSION['username'] . "';";
-			$userid_result = $mysqli->query($userid_query);
-			$userid_row = $userid_result->fetch_assoc();
+		if(@$_SESSION['isAdmin']==1):
 			
-			echo("<h1>Equipos creados por " . $userid_row['Usuario']  . ":</h1>");
-			$equipo_query = "SELECT * FROM equipo join jugadores on equipo.IdCapitan = jugadores.IdJugador where IdUsuario=" . $userid_row['IdUsuario'] . ";";
+			$equipo_query = "SELECT * FROM equipo join jugadores on equipo.IdCapitan = jugadores.IdJugador;";
 			$equipo_result = $mysqli->query($equipo_query);
 		while($equipo_row = $equipo_result->fetch_assoc()):
 			
-			echo("<h1>". $equipo_row['NombreEquipo'] . "</h1>");
+			echo("<h1>". $equipo_row['NombreEquipo'] . " en el torneo \"" . $equipo_row['IdTorneo'] ."\"</h1>");
 		
 		?>
-        	<form action="equipo_modify.php" method="post">
+        	<form action="dashboard_equipos_modify.php" method="post">
             <input type="hidden" name="id_torneo" value='<?php echo($equipo_row['IdTorneo']); ?>' />
             <input type="hidden" name="IdEquipo" value='<?php echo($equipo_row['IdEquipo']); ?>' />
         	<table border="1" >
@@ -196,17 +193,9 @@ connectDB();
         
 </table>
         
+        <input type="submit" name="save_equipo" value="Guardar" /> <input type="submit" name="delete_equipo" value="Borrar" />
+        </form>
         <?php
-				$present_date = new DateTime();
-				$present_date = $present_date->format('Y-m-d');
-				$limit_date = new DateTime($row_torneo['FechaLimiteInscripcion']);
-				$limit_date = $limit_date->format('Y-m-d');
-				if($present_date<$limit_date) {
-					
-		
-        echo("<input type='submit' name='save_equipo' value='Guardar' /> <input type='submit' name='delete_equipo' value='Borrar' />
-        </form> ");
-				}
 		
 		
 		endwhile;
