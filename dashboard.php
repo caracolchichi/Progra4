@@ -56,6 +56,7 @@ connectDB();
     <!-- begin #mainContent -->
     <div id="mainContent">
     	<!-- Main Content aqui -->
+        <h2><a href="dashboard.php"> Torneos </a>    -    <a href="dashboard_equipos.php"> Equipos </a>
         <?php
 		if(@$_SESSION['isAdmin']==1) :
 		?>
@@ -110,7 +111,7 @@ connectDB();
         </table>
         </li>
         <li><input type="text" name="tournament_rama" placeholder="Rama" /></li>
-        <li><input type="text" name="tournament_info" placeholder="Informacion o notas extra" /></li>
+        <li><input type="text" name="tournament_info" placeholder="Informacion o notas extra" size="60" /></li>
         <li><input type="submit" name="submit_crear_torneo" value="Crear" /></li>
         
         </ul>
@@ -369,6 +370,7 @@ connectDB();
         </ul>
         <input type="submit" name="guardar_partido" value="Guardar" /> <input type="submit" name="borrar_partido" value="Borrar" />
         </form>
+        --------------------------------------
         <?php
 		endwhile;
 		?>

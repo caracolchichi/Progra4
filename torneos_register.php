@@ -65,8 +65,16 @@ connectDB();
 		<form action="torneos_register_save.php" method="post">	
         <input type="hidden" name="id_torneo" value='<?php echo($IdTorneo); ?>' />
             <input type="hidden" name="id_usuario" value='<?php echo($IdUsuario); ?>' />
-         <input type="text" placeholder="Nombre del equipo" required="required" pattern="[a-zA-Z 0-9-_]{1,30}" name="nombre_equipo" />    
-			<table border="1" 
+           
+			<table border="1" >
+            <tr>
+            <td>
+            Nombre del equipo:
+            </td>
+            <td>
+            <input type="text" placeholder="Nombre del equipo" required="required" pattern="[a-zA-Z 0-9-_]{1,30}" name="nombre_equipo" />    
+            </td>
+            </tr>
 		<tr>
 			<th rowspan="2" style="width:6%">Puesto</th>
 			<th rowspan="2">NOMBRE COMPLETO</th>

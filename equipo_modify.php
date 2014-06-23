@@ -25,7 +25,7 @@ connectDB();
     	<h1><a href="index.php">Torneos de Fútbol UNITEC</a></h1>
         <div id="navcontainer">
             <ul id="navlist">
-                <li  id="active"><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="torneos.php">Torneo</a></li>
                 <li><a href="calendario.php">Calendario</a></li>
                 <?php
@@ -37,7 +37,7 @@ connectDB();
 				  endif;
 				  if(isset($_SESSION['username']) || isset($_SESSION['isAdmin'])) :
 				?>
-                <li><a href="cp.php">Control Panel </a></li>
+                <li id="active"><a href="cp.php">Control Panel </a></li>
                 <li><a href="?logout=1">Cerrar SesiÓn </a></li>
                 <?php
 				endif;
@@ -71,15 +71,16 @@ connectDB();
 					&& isset($_POST['carrera_capitan'])
 					&& isset($_POST['celular_capitan'])
 					&& isset($_POST['mail_capitan'])){
-						
+						echo("In!");
 					
 					
 					
-				$select_capitan = "SELECT * FROM jugadores WHERE Cuenta='" . $_POST['cuenta_capitan'] . "' and IdTorneo=" . $_POST['id_torneo'] .";";
+				$select_capitan = "SELECT * FROM jugadores WHERE Cuenta=" . $_POST['cuenta_capitan'] . " and IdTorneo=" . $_POST['id_torneo'] .";";
 					$result_capitan = $mysqli->query($select_capitan);
+					$row_capitan = $result_capitan->fetch_assoc();
 					
-					if($result_capitan->num_rows == 0){
-						echo("No. Cuenta " . $_POST['cuenta_capitan']. " valida </br>");
+					if($result_capitan->num_rows ==0 || ( $result_capitan->num_rows ==1 && $row_capitan['IdEquipo']==$_POST['IdEquipo'])){
+						
 						$NombreJugador = $_POST['nombre_capitan'];
 						$BirthDate = $_POST['year_capitan'] . "-" . 
 						$_POST['month_capitan'] . "-" . $_POST['day_capitan'];
@@ -88,21 +89,16 @@ connectDB();
 						$Celular = $_POST['celular_capitan'];
 						$Mail = $_POST['mail_capitan'];
 						
-						$insert_captain_query = "INSERT INTO jugadores (IdTorneo, Nombre, Correo, Telefono, FechaNacimiento, Cuenta, Carrera) VALUES(" 
-						. $IdTorneo . ", '" . $NombreJugador . "', '" . $Mail . "', '" . $Celular . "', '" . $BirthDate . "', '"
-						. $Cuenta . "', '" . $CarreraJugador . "');";
-						$mysqli->query($insert_captain_query);
-						$IdCapitan = $mysqli->insert_id;
+						$update_captain_query = "UPDATE jugadores SET Nombre='" . $NombreJugador 
+						. "', FechaNacimiento='" . $BirthDate
+						. "', Cuenta='" . $Cuenta
+						."', Carrera='" . $CarreraJugador
+						."', Telefono='" . $Celular
+						."', Correo='" . $Mail
+						. "' WHERE IdJugador=" . $_POST['IdCapitan'] . ";" ;	
+						$mysqli->query($update_captain_query);
 						
-						$NombreEquipo = $_POST['nombre_equipo'];
 						
-						$insert_team = "INSERT INTO equipo (NombreEquipo, IdCapitan, IdUsuario) VALUES('"
-						. $NombreEquipo . "', " . $IdCapitan . ", " . $_POST['id_usuario'] . ");";
-						$mysqli->query($insert_team);
-						$IdEquipo = $mysqli->insert_id;
-						
-						$update_captain = "update jugadores set IdEquipo=" . $IdEquipo . " where IdJugador=" . $IdCapitan . ";";
-						$mysqli->query($update_captain);
 						
 					}//end if res < 1
 					else{
@@ -119,9 +115,11 @@ connectDB();
 			
 				if(@$_POST['nombre_jugador' . $entry_counter] != NULL
 				    && @$_POST['cuenta_jugador' . $entry_counter] != NULL
-					&& isset($_POST['carrera_jugador' . $entry_counter])
-					&& isset($_POST['celular_jugador' . $entry_counter])
-					&& isset($_POST['mail_jugador' . $entry_counter])){
+					&& $_POST['carrera_jugador' . $entry_counter] != NULL
+					&& $_POST['celular_jugador' . $entry_counter] != NULL
+					&& $_POST['mail_jugador' . $entry_counter] != NULL
+					&& !isset($_POST['checkbox_borrar' . $entry_counter])
+					&& @$_POST['IdJugador' . $entry_counter]==NULL){
 						
 					
 					
@@ -141,22 +139,86 @@ connectDB();
 						$Mail = $_POST['mail_jugador' . $entry_counter];
 						
 						$insert_player_query = "INSERT INTO jugadores (IdEquipo, IdTorneo, Nombre, Correo, Telefono, FechaNacimiento, Cuenta, Carrera) VALUES(" 
-						. $IdEquipo . ", "
+						. $_POST['IdEquipo'] . ", "
 						. $IdTorneo . ", '" . $NombreJugador . "', '" . $Mail . "', '" . $Celular . "', '" . $BirthDate . "', '"
 						. $Cuenta . "', '" . $CarreraJugador . "');";
 						$mysqli->query($insert_player_query);
 						
-					}//end if res < 1
+					}//end if res ==0
 					else{
 						echo("El jugador con el numero de cuenta " . $_POST['cuenta_jugador'. $entry_counter] . " ya esta en un equipo. </br>");	
 					}
 					
+					
 				}// end isset
+				else{
+					if(@$_POST['nombre_jugador' . $entry_counter] != NULL
+				    && @$_POST['cuenta_jugador' . $entry_counter] != NULL
+					&& $_POST['carrera_jugador' . $entry_counter] != NULL
+					&& $_POST['celular_jugador' . $entry_counter] != NULL
+					&& $_POST['mail_jugador' . $entry_counter] != NULL
+					&& !isset($_POST['checkbox_borrar' . $entry_counter])
+					&& @$_POST['IdJugador' . $entry_counter]!=NULL){
+						
+					
+					
+					
+				$select_jugador = "SELECT * FROM jugadores WHERE Cuenta=" . $_POST['cuenta_jugador'. $entry_counter] . " and IdTorneo=" . $_POST['id_torneo'] .";";
+					$result_jugador = $mysqli->query($select_jugador);
+					$row_jugador = $result_jugador->fetch_assoc();
+					
+					if($result_jugador->num_rows ==0 || ( $result_jugador->num_rows ==1 && $row_jugador['IdEquipo']==$_POST['IdEquipo'])){
+						
+						$NombreJugador = $_POST['nombre_jugador' . $entry_counter];
+						$BirthDate = $_POST['year_jugador'. $entry_counter] . "-" . 
+						$_POST['month_jugador'. $entry_counter] . "-" . $_POST['day_jugador'. $entry_counter];
+						$Cuenta = $_POST['cuenta_jugador'. $entry_counter];
+						$CarreraJugador = $_POST['carrera_jugador'. $entry_counter];
+						$Celular = $_POST['celular_jugador'. $entry_counter];
+						$Mail = $_POST['mail_jugador'. $entry_counter];
+						
+						$update_jugador_query = "UPDATE jugadores SET Nombre='" . $NombreJugador 
+						. "', FechaNacimiento='" . $BirthDate
+						. "', Cuenta='" . $Cuenta
+						."', Carrera='" . $CarreraJugador
+						."', Telefono='" . $Celular
+						."', Correo='" . $Mail
+						. "' WHERE IdJugador=" . $_POST['IdJugador'. $entry_counter] . ";" ;	
+						$mysqli->query($update_jugador_query);
+						
+						
+						
+					}//if num rows ==0
+					
+					}//end update
+					else{
+					if(isset($_POST['checkbox_borrar' . $entry_counter]) && $_POST['IdJugador' . $entry_counter]){
+						$delete_jugador = "DELETE FROM jugadores where IdJugador=" . $_POST['IdJugador' . $entry_counter] . ";";
+						$mysqli->query($delete_jugador);
+						
+					}//end borrar
+					}//end else
+					
+				}
+				
+				
 		?>
         
         <?php
+				
 			endfor;
+			
 			header("Refresh:0; url=cp.php");
+		elseif(isset($_SESSION['username']) && @$_POST['delete_equipo']):
+			$delete_equipo = "DELETE FROM equipo where IdEquipo=" . $_POST['IdEquipo'] . ";";
+			$mysqli->query($delete_equipo);
+			$delete_jugadores = "delete from jugadores where IdEquipo=" . $_POST['IdEquipo'] . ";";
+			$mysqli->query($delete_jugadores);
+			
+			echo("<h1>Se ha borrado el equipo. </h1>");	
+			header("Refresh:0; url=cp.php");
+		
+		echo("</br>");
 		else:
 		exitlabel:
 		echo("<h1>Se ha producido un error en la registracion del equipo. Vuelva a la pagina anterior, verifique que las personas no esten registradas en otros equipos e intentelo de nuevo.</h1>");
